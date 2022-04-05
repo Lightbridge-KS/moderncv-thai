@@ -8,6 +8,35 @@
 
 \documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
+%% ---------------- เริ่มการตั้งค่าภาษาไทย ---------------- %%
+
+%% ขอบคุณแหล่งข้อมูลต่อไปนี้ สำหรับคำแนะนำการตั้งค่าภาษาไทยใน LaTeX %%
+%   ฑิตยา หวานวารี: http://pioneer.netserv.chula.ac.th/~wdittaya/LaTeX/LaTeXThai.pdf
+%   mathmd from Github; https://github.com/mathmd/polygloTeX
+
+
+%% ---- ตั้งค่าให้ตัดคำภาษาไทย ---- %%
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 0pt % เพิ่มความกว้างเว้นวรรคให้ความยาวแต่ละบรรทัดเท่ากัน
+
+%% ---- font settings ---- %%
+\usepackage{fontspec} % For Thai font
+\defaultfontfeatures{Mapping=tex-text} % map LaTeX formating, e.g., ``'', to match the current font
+
+
+% ตั้งฟอนต์หลักภาษาไทย ที่น่าใช้ เช่น: "TH Sarabun New", "Laksaman"
+\newfontfamily{\thaifont}[Scale=MatchUppercase,Mapping=textext]{TH
+Sarabun New}
+\newenvironment{thailang}{\thaifont}{} % create environment for Thai language
+\usepackage[Latin,Thai]{ucharclasses} % ตั้งค่าให้ใช้ "thailang" environment เฉพาะ string ที่เป็น Unicode ภาษาไทย
+
+\setTransitionTo{Thai}{\begin{thailang}} % Use environment "thailang" when found Thai font.
+\setTransitionFrom{Thai}{\end{thailang}} % If not found, end the environment.
+
+
+%% ---------------- จบการตั้งค่าภาษาไทย ---------------- %%
+
+
 % moderncv themes
 \moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 \moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
@@ -41,7 +70,7 @@
 \usepackage[english]{babel}  % FIXME: using spanish breaks moderncv
 
 % personal data
-\name{John}{Doe}
+\name{ชื่อ}{นามสกุล}
 \title{Résumé title}                               % optional, remove / comment the line if not wanted
 \born{4 July 1776}                                 % optional, remove / comment the line if not wanted
 \address{street and number}{postcode city}{country}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
